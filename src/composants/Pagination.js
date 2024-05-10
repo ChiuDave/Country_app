@@ -28,9 +28,9 @@ const PaginatedPays = ({ pays, itemsPerPage }) => {
          ))}
         </div>
        
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+          <div style={{  flexWrap: "wrap", justifyContent: "space-between" }}>
             {Array.from({ length: totalPages }, (_, index) => (
-              <Button key={index} onClick={() => setCurrentPage(index + 1)}>
+              <Button key={index} onClick={() => setCurrentPage(index + 1)} basic color='grey' >
                 {index + 1}
               </Button>
             ))}
