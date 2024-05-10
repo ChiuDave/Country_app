@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Card, Container, Image} from "semantic-ui-react";
+import { Container} from "semantic-ui-react";
 import Pagination from "./Pagination";
 
 const Accueil = () => { 
     const [pays, setPays] = useState()
     
     useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/all?fields=name,flags`)
+        fetch(`https://restcountries.com/v3.1/all?fields=name,flags,cca3`)
         .then((response) => response.json())
         .then((data) => setPays(data))
         .catch((erreur) => console.log(erreur))

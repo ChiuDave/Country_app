@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Pays from './Accueil';
-import { Card, Container, Image} from "semantic-ui-react";
+import { Button, Card, Image} from "semantic-ui-react";
 import { Link } from 'react-router-dom';
+
 
 const PaginatedPays = ({ pays, itemsPerPage }) => {
     console.log(pays)
@@ -15,8 +15,8 @@ const PaginatedPays = ({ pays, itemsPerPage }) => {
   
     return (
       <div>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
         { currentPays.map((moncompteur) => (
-
         <Card key={moncompteur.cca3}>
             <Image src={moncompteur.flags.png} />
                 <Card.Content>
@@ -26,13 +26,15 @@ const PaginatedPays = ({ pays, itemsPerPage }) => {
                 </Card.Content>
         </Card>
          ))}
-        <div>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button key={index} onClick={() => setCurrentPage(index + 1)}>
-              {index + 1}
-            </button>
-          ))}
         </div>
+       
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <Button key={index} onClick={() => setCurrentPage(index + 1)}>
+                {index + 1}
+              </Button>
+            ))}
+          </div>
       </div>
     );
   };
