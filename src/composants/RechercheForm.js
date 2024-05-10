@@ -1,0 +1,1 @@
+// choisir 1 affiche l'autre option jusqu'à summission qui affiche info du pays désiré
