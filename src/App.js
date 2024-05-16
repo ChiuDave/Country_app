@@ -8,6 +8,7 @@ import Page404 from './composants/Page404';
 import Recherche from './composants/Recherche';
 import Pays from './composants/Pays';
 import RechercheParRegion from './composants/RechercheParRegion'
+import RechercheForum from './composants/RechercheForm';
 
 
 
@@ -47,6 +48,13 @@ function App() {
                                 Recherche par régions
                             </NavLink>
                     </MenuItem>
+
+                    <MenuItem>
+                        <NavLink to='/form'className={({isActive}) => [isActive ? "lien-active": ""]} 
+                            style={({isActive,isPending}) => {return {color: isActive ? "red" : "black", fontWeight: isActive ? "bold": "" ,textDecoration: isPending ?"none":"none"}}}>
+                                Form
+                            </NavLink>
+                    </MenuItem>
                
                 </Menu>
             </header>
@@ -57,6 +65,7 @@ function App() {
                     <Route path="/recherche" element={<Recherche />} />
                     <Route path="/pays/:codePays" element={<Pays />} />
                     <Route path='/region' element={<RechercheParRegion />}/>
+                    <Route path='/form' element={<RechercheForum />} />
                     <Route path="*" element={<Page404 />} />
 
                 </Routes>
