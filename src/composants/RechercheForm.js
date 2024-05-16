@@ -3,10 +3,30 @@ import { Container, Label, Select } from "semantic-ui-react"
 
 // choisir 1 affiche l'autre option jusqu'à summission qui affiche info du pays désiré
 const RechercheForum = () => {
-    const [question1, setQuestion1] = useState();
-    const [question2, setQuestion2] = useState();
-    const [question3, setQuestion3] = useState()
+    const [langue, setLangue] = useState();
+    const [pays, setPays] = useState();
+    const [paysVoisin, setPaysVoisin] = useState();
 
+    const onSelectLangue = () => {
+        fetch(`https://restcountries.com/v3.1/lang/${langue}?fields=cca3,name,flags`)
+            .then((response) => response.json())
+            .then((data) => setPays(data))
+            .catch((erreur) => console.log(erreur))
+    }
+
+    const onSelectPays = () => {
+        fetch(`https://restcountries.com/v3.1/name/${pays}?fields=cca3,name,flags`)
+            .then((response) => response.json())
+            .then((data) => setPaysVoisin(data))
+            .catch((erreur) => console.log(erreur))
+    }
+
+    const onSelectPaysVoisin = () => {
+        fetch(`https://restcountries.com/v3.1/name/${pays}?fields=cca3,name,flags`)
+            .then((response) => response.json())
+            .then((data) => setPaysVoisin(data))
+            .catch((erreur) => console.log(erreur))
+    }
     return(
         <Container>
             <div style={{marginTop: "30px"}}>
