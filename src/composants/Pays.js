@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { Container, Segment , Label} from "semantic-ui-react";
 
 const Pays = () => {
-    //console.log(props)
-    //useMatch()
     const params = useParams()
     console.log(params)
     const alphaCode = params.codePays
