@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Label, Segment, Select } from "semantic-ui-react"
+import { Button, Container, Label, Segment, Select } from "semantic-ui-react"
 
 // choisir 1 affiche l'autre option jusqu'à summission qui affiche info du pays désiré
 const RechercheForum = () => {
@@ -12,7 +12,8 @@ const RechercheForum = () => {
   
     const [optionPays, setOptionPays] = useState([])
     const [optionPaysVoisin, setOptionPaysVoisin] = useState([])
-    const [resultat, setResultat] = useState() //si met vide affichage conditionnel s'affichera différement
+    const [resultat, setResultat] = useState([]) 
+    const [erreur, setError] = useState()
 
   
 
@@ -39,15 +40,16 @@ const RechercheForum = () => {
             .then((data) => { 
                 console.log(data);
                 
-                if (data.borders) {
+                if (data.borders.length > 0) {
                     const options = data.borders.map((country) => ({
                         key: country,
                         text: country,
                         value: country,
                     }));
+                    setError('')
                     setOptionPaysVoisin(options);
                 } else {
-                    console.log("Aucun pays voisin autour de ce pays");
+                    setError('Aucun voisin disponible')
                 }
             })
             .catch((erreur) => console.log(erreur));
@@ -59,25 +61,29 @@ const RechercheForum = () => {
     const onSelectPaysVoisin = (paysVoisin) => {
         fetch(`https://restcountries.com/v3.1/alpha/${paysVoisin}`)
             .then((response) => response.json())
-            .then((data) => setResultat(data))
+            .then((data) => setResultat(data) )
             .catch((erreur) => console.log(erreur))
     }
 
-    console.log(optionPays.length)
-    console.log(resultat)
+    const resetForm = () => {
+        setOptionPays([]);
+        setOptionPaysVoisin([]);
+        setResultat([]);
+    };
+
 
     return(
         <div style={{ width: '300px', margin: 'auto', paddingTop: '50px' }}>
             <h1>Mini formulaire</h1>
             <form>
-                <Container>
+                <Container style={{ border: '1px solid black', padding: '20px', borderRadius: '5px' }}>
                     <div style={{marginTop: "30px"}}>
                         <Label>Langue à choisir: </Label>
                         <Select placeholder="Choisir la langue" options={optionLangue} onChange={(e,data) => onSelectLangue(data.value)}/>
                     </div>
                     {optionPays.length  > 0 ? 
                     <div style={{marginTop: "30px"}}>
-                        <Label>Pays à choisir: </Label>
+                        <Label>Pays à choisir: </Label><br />
                         <Select placeholder="Choisir le pays" options={optionPays} onChange={(e,data) => onSelectPays(data.value)}/> 
                     </div>
                     :undefined}
@@ -88,7 +94,7 @@ const RechercheForum = () => {
                     </div>
                     :undefined}
                     <div>
-                        {resultat && resultat.length > 0 && resultat[0] && (
+                        {resultat.length > 0  ?
                             <Container>
                             <h1>{resultat[0].name.common}</h1>
                             <Segment>{resultat[0].subregion}</Segment>
@@ -96,12 +102,14 @@ const RechercheForum = () => {
                             <p>Population : {resultat[0].population} habitants</p>
                             <p>Latitude : {resultat[0].latlng[0]} - Longitude : {resultat[0].latlng[1]}</p>
                             </Container>
-                
-                    )}
-
+                        :undefined}
+                    
+                        {erreur ? 
+                            <div className="ui negative message">{erreur}</div>
+                        :undefined}
 
                      </div>
-            
+                     <Button onClick={resetForm} style={{ marginTop: "30px" }} primary>Réinitialiser</Button>
                 </Container>
             </form>
         </div>
