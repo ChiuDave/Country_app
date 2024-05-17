@@ -1,8 +1,9 @@
 import React ,{ useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Container, Image, Input, Label } from "semantic-ui-react";
 
 const RechercheParRegion = () => {
+    const navigate = useNavigate();
     const [pays, setPays] = useState([]);
     const [error, setError] = useState('');
     const [success, setSucess] = useState('');
@@ -59,7 +60,9 @@ const RechercheParRegion = () => {
     }
     return (
         <Container>
-
+            <br />
+            <Button onClick={()=> navigate(-1)}> Page précédente</Button> 
+            <Button onClick={()=>navigate(1)}> Page suivante</Button> 
             <h1>Rechercher</h1>
             <Label pointing="right">Région</Label>
             <Input type="text" value={formData.region} onChange={handleChange} name='region'/>

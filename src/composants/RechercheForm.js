@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { Button, Container, Label, Segment, Select } from "semantic-ui-react"
 
 // choisir 1 affiche l'autre option jusqu'à summission qui affiche info du pays désiré
 const RechercheForum = () => {
+    const navigate = useNavigate();
 
     const optionLangue = [
         {key: 'Français', text: 'Français', value: 'French'},
@@ -74,6 +76,9 @@ const RechercheForum = () => {
 
     return(
         <div style={{ width: '300px', margin: 'auto', paddingTop: '50px' }}>
+            <br />
+            <Button onClick={()=> navigate(-1)}> Page précédente</Button> 
+            <Button onClick={()=>navigate(1)}> Page suivante</Button> 
             <h1>Mini formulaire</h1>
             <form>
                 <Container style={{ border: '1px solid black', padding: '20px', borderRadius: '5px' }}>

@@ -1,8 +1,9 @@
 import { useEffect, useState} from "react";
-import { Link, useParams } from "react-router-dom";
-import { Container, Segment , Label} from "semantic-ui-react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Container, Segment , Label, Button} from "semantic-ui-react";
 
 const Pays = () => {
+    const navigate = useNavigate();
     const params = useParams()
     console.log(params)
     const alphaCode = params.codePays
@@ -20,6 +21,8 @@ const Pays = () => {
 
     return (
         <div>
+            <Button onClick={()=> navigate(-1)}> Page précédente</Button> 
+            <Button onClick={()=>navigate(1)}> Page suivante</Button> 
             {pays.length > 0 ?
                 <Container>
                     <h1>{pays[0].name.common}</h1>

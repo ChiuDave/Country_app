@@ -1,8 +1,9 @@
 import React ,{ useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Container, Image, Input, Label } from "semantic-ui-react";
 
 const Recherche = () => {
+    const navigate = useNavigate();
     const [nom, setNom]=useState("");
     const [pays, setPays] = useState([])
 
@@ -31,6 +32,9 @@ const Recherche = () => {
     }
     return (
         <Container>
+            <br />
+            <Button onClick={()=> navigate(-1)}> Page précédente</Button> 
+            <Button onClick={()=>navigate(1)}> Page suivante</Button> 
             <h1>Rechercher</h1>
             <Label pointing="right">Pays</Label>
             <Input type="text" value={nom} onChange={(e) => setNom(e.target.value)} />

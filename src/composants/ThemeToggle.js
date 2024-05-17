@@ -1,14 +1,20 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContexte';
-import { Button } from 'semantic-ui-react';
+
+import { NavLink } from 'react-router-dom';
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <Button onClick={toggleTheme}>
+    <NavLink to="#" onClick={(e) => {
+        e.preventDefault();
+        toggleTheme();
+      }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
       Switch to {theme === 'light' ? 'dark' : 'light'} theme
-    </Button>
+    </NavLink>
   );
 };
 
