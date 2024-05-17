@@ -9,6 +9,9 @@ import Recherche from './composants/Recherche';
 import Pays from './composants/Pays';
 import RechercheParRegion from './composants/RechercheParRegion'
 import RechercheForum from './composants/RechercheForm';
+import ThemeToggle from './composants/ThemeToggle';
+import { ThemeProvider } from './context/ThemeContexte';
+
 
 
 
@@ -55,9 +58,17 @@ function App() {
                                 Form
                             </NavLink>
                     </MenuItem>
+                    <MenuItem>
+                    <ThemeProvider>
+                
+                        <ThemeToggle />
+           
+                    </ThemeProvider>
+                    </MenuItem>
                
                 </Menu>
             </header>
+        
 
                 <Routes>
 
