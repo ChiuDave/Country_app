@@ -50,6 +50,16 @@ const Layout = () => {
                         </NavLink>
                     </MenuItem>
                     <MenuItem>
+                        <NavLink to='/langues' end className={({ isActive }) => (isActive ? "lien-active" : "")}
+                            style={({ isActive, isPending }) => ({
+                                color: isActive ? "red" : "black",
+                                fontWeight: isActive ? "bold" : "",
+                                textDecoration: isPending ? "none" : "none"
+                            })}>
+                            Langues
+                        </NavLink>
+                    </MenuItem>
+                    <MenuItem>
                         <NavLink to='/form' className={({ isActive }) => (isActive ? "lien-active" : "")}
                             style={({ isActive, isPending }) => ({
                                 color: isActive ? "red" : "black",

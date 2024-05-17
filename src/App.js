@@ -9,6 +9,7 @@ import Recherche from './composants/Recherche';
 import Pays from './composants/Pays';
 import RechercheParRegion from './composants/RechercheParRegion'
 import RechercheForum from './composants/RechercheForm';
+import DisplayLangues from './composants/DisplayLangues';
 
 import { ThemeProvider } from './context/ThemeContexte';
 import Layout from './composants/Layout';
@@ -28,6 +29,7 @@ function App() {
                         <Route path="/pays/:codePays" element={<Pays />} />
                         <Route path='/region' element={<RechercheParRegion />}/>
                         <Route path='/form' element={<RechercheForum />} />
+                        <Route path='/langues' element={<DisplayLangues/>}/>
                         <Route path="*" element={<Page404 />} />
                     </Route>
                     </Routes>
