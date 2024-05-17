@@ -46,7 +46,6 @@ const DisplayLangues = () => {
                     selectedCountries.push(country)
                 }
             })
-
             setFilteredCountries(selectedCountries)
         } catch (error) {
             console.error("Erreur lors du filtrage des pays:", error)
@@ -55,7 +54,6 @@ const DisplayLangues = () => {
 
     const renderFilteredCountries = () => {
         return (
-            
             <Container style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", width: "100%" }}>
 
                 {filteredCountries.map(country => (
@@ -80,7 +78,7 @@ const DisplayLangues = () => {
                 selectedLangues={selectedLangues}
                 handleCheckboxChange={handleCheckboxChange}
             />
-            <button onClick={handleFiltrerClick}>Filtrer</button>
+            <Button onClick={handleFiltrerClick}>Filtrer</Button>
             <h2>Pays parlant les langues sélectionnées du filtrage :</h2>
             {filteredCountries.length > 0 && renderFilteredCountries()}
         </div>

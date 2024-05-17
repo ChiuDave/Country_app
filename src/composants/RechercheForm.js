@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
-import { Button, Container, Label, Segment, Select } from "semantic-ui-react"
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Card, Container, Label, Segment, Select } from "semantic-ui-react"
 
 // choisir 1 affiche l'autre option jusqu'à summission qui affiche info du pays désiré
 const RechercheForum = () => {
@@ -105,7 +105,11 @@ const RechercheForum = () => {
                             <Segment>{resultat[0].subregion}</Segment>
                             <img alt="drapeau" src={resultat[0].flags.png} style={{width: 130, border:"1px solid grey"}} />
                             <p>Population : {resultat[0].population} habitants</p>
-                            <p>Latitude : {resultat[0].latlng[0]} - Longitude : {resultat[0].latlng[1]}</p>
+                            <p>Latitude : {resultat[0].latlng[0]} - Longitude : {resultat[0].latlng[1]}</p><br />
+                            Cliquer sur le nom du pays pour afficher plus d'information:
+                            <Card.Header>
+                                <Link to={`/pays/${resultat[0].cca3}`}> {resultat[0].name.common}</Link>
+                            </Card.Header>
                             </Container>
                         :undefined}
                     
